@@ -16,8 +16,9 @@ export class SecondQuizComponent implements OnInit {
   choiceAnswer:string[]=["","","","","","","",""];
   rightAnsCount:number = 0;
   result:number = 0.0;
-  reviewAll: string[][] = [[],[],[],[],[],[],[],[]];
   resultMsg:string;
+  reviewString:string;
+  reviewAll:string[][] = [[],[],[],[],[],[],[],[]]
 
   constructor(private quiz1Service:Quiz1Service, private router: Router) { }
   quizForm = new FormGroup({
@@ -45,27 +46,41 @@ export class SecondQuizComponent implements OnInit {
   previousButton():void{
     this.choiceAnswer[this.position] = this.quizForm.get('choice').value ;
     this.quizForm.patchValue({choice:this.choiceAnswer[this.position-1]});
+    this.reviewString = "";
     this.position -= 1;
   }
   reviewAns():void{
-    for (let i in this.choiceAnswer) {
-          this.reviewAll[i][0] = this.quiz2Info[i].question;
-          this.reviewAll[i][1] = this.quiz2Info[i].a;
-          this.reviewAll[i][2] = this.quiz2Info[i].b;
-          this.reviewAll[i][3] = this.quiz2Info[i].c;
-          this.reviewAll[i][4] = this.quiz2Info[i].d;
-          if (this.choiceAnswer[i] = "a") {
-            this.reviewAll[i][5] = this.quiz2Info[i].a;
-          } else if (this.choiceAnswer[i] = "b"){
-            this.reviewAll[i][5] = this.quiz2Info[i].b;
-          } else if (this.choiceAnswer[i] = "c"){
-            this.reviewAll[i][5] = this.quiz2Info[i].c;
-          } else if (this.choiceAnswer[i] = "d"){
-            this.reviewAll[i][5] = this.quiz2Info[i].d;
+    this.reviewString = "";
+    this.choiceAnswer[this.position] = this.quizForm.get('choice').value;
+    for (let j = 0; j < this.choiceAnswer.length; j++) {
+      this.reviewAll[j][0] = this.quiz2Info[j].question;
+      if (this.choiceAnswer[j] == "a") {
+        this.reviewAll[j][1] = this.quiz2Info[j].a;
+      } else if (this.choiceAnswer[j] == "b"){
+        this.reviewAll[j][1] = this.quiz2Info[j].b;
+      } else if (this.choiceAnswer[j] == "c"){
+        this.reviewAll[j][1] = this.quiz2Info[j].c;
+      } else if (this.choiceAnswer[j] == "d"){
+        this.reviewAll[j][1] = this.quiz2Info[j].d;
+      } else {
+        this.reviewAll[j][1] = "No answer";
+      }
+    }
+    for (let i = 0; i < this.choiceAnswer.length; i++) {
+          this.reviewString += `${this.quiz2Info[i].question}. `;
+          if (this.choiceAnswer[i] == "a") {
+            this.reviewString += `Your answer: ${this.quiz2Info[i].a}'\n'`;
+          } else if (this.choiceAnswer[i] == "b"){
+            this.reviewString += `Your answer: ${this.quiz2Info[i].b}'\n'`;
+          } else if (this.choiceAnswer[i] == "c"){
+            this.reviewString += `Your answer: ${this.quiz2Info[i].c}'\n'`;
+          } else if (this.choiceAnswer[i] == "d"){
+            this.reviewString += `Your answer: ${this.quiz2Info[i].d}'\n'`;
           } else {
-            this.reviewAll[i][5] = "You did not choose an answer";
+            this.reviewString += "Your answer: No answer'\n'";
           }
-        } 
+        }
+        alert(this.reviewString); 
     
   }
   nextStep():void {
@@ -73,10 +88,11 @@ export class SecondQuizComponent implements OnInit {
       if(confirm("Do you want to retake this quiz because you did not pass the quiz??")) {
         this.position = 0;
         this.choiceAnswer = ["","","","","","","",""];
-        this.reviewAll = [[],[],[],[],[],[],[],[]];
         this.result = 0.0;
         this.resultMsg = "";
+        this.reviewAll = [[],[],[],[],[],[],[],[]]
         this.rightAnsCount = 0;
+        this.reviewString = "";
         this.quizForm.reset('choice');
         this.router.navigate(['/quiz2']);
       } else {
@@ -91,6 +107,21 @@ export class SecondQuizComponent implements OnInit {
 }
   }
   results():void {
+    if (this.choiceAnswer.length = 7) {
+    this.choiceAnswer[this.position] = this.quizForm.get('choice').value;
+    this.position += 1;
+  } else if (this.choiceAnswer.length = 8) {
+    this.position += 1;
+  } else {
+    this.choiceAnswer[this.position] = this.quizForm.get('choice').value;
+    console.log(this.choiceAnswer[this.position+1]);
+    if (this.choiceAnswer[this.position+1] == null){
+      this.quizForm.reset('choice');
+    } else {
+      this.quizForm.patchValue({choice:this.choiceAnswer[this.position+1]});
+    }
+    this.position += 1;
+  }
     if(confirm("Do you want to submit your quiz?")) {
       for (let i in this.quiz2Info) {
         if (this.quiz2Info[i].right_answer == this.choiceAnswer[i]){

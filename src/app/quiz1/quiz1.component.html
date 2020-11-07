@@ -11,7 +11,7 @@
         <label for="option4"> {{quiz1Info[position]?.d}}</label><br/>
 
         <input type="button" value="Previous" (click)="previousButton()" [disabled]="1 > position" />
-        <input type="button" value="Review" (click)="reviewAns()" />
+        <input type="button" value="Review" (click)="reviewAns()" [disabled]="(quiz1Info.length-1) > position"/>
         <input type="button" value="Next" (click)="nextButton()" [disabled]="position > (quiz1Info.length-2)" />
         <hr/>
         <input type=submit value="submit" class="btn btn-primary"  (click)="results()" />
