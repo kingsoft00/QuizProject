@@ -1,0 +1,10 @@
+{"Biology":[
+    {"question":"1. Which one of the following is not an agent of natural evolutionary change?","a":"mutation","b":"migration","c":"genetic drift","d":"artificial selection","right_answer":"d"},
+    {"question":"2. For a gene with two alternative alleles, a (frequency p) and a (frequency q), the term in the algebraic form of the Hardy-Weinberg equilibrium for the heterozygote genotype frequency is___","a":"p^2.","b":"q^2","c":"2pq.","d":"(p+q)^2.","right_answer":"c"},
+    {"question":"3. Hardy-Weinberg pointed out that the original proportions of the genotypes in a population would remain constant from generation to generation if certain assumptions are met. Which one of the following is not a Hardy-Weinberg condition? ","a":"The population is very large","b":"No gene flow occurs","c":"No selection occurs.","d":"No polymorphic loci exist in the population","right_answer":"d"},
+    {"question":"4. A locus with more variation than can be explained by mutation is referred to as_____","a":"dominant.","b":"polynomial.","c":"polymorphic.","d":"heterozygous.","right_answer":"c"},
+    {"question":"5. What percentage of the enzyme loci of a typical human being are heterozygous?","a":"1%","b":"5%","c":"10%","d":"50%","right_answer":"b"},
+    {"question":"6. Biologists examined the question of variation in different genes through studies on_____","a":"blood groups only.","b":"enzymes only.","c":"learning only.","d":"blood groups and enzymes.","right_answer":"d"},
+    {"question":"7. The frequency of a particular allele within a population can be changed, over time, by______","a":"genetic outflow","b":"large population size","c":"selection.","d":"inheritance of acquired characteristics.","right_answer":"c"},
+    {"question":"8. 'The inheritance of acquired characteristics' proposal was put forward by","a":" Darwin","b":"Lamarck.","c":"Wallace.","d":"Founder","right_answer":"b"}
+]}

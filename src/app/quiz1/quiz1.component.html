@@ -1,0 +1,20 @@
+<div>
+    <form [formGroup]="quizForm">
+        <label>Quesion: {{quiz1Info[position]?.question}}</label><br/>
+        <input type="radio" id="option1" value="a" formControlName="choice"/>
+        <label for="option1"> {{quiz1Info[position]?.a}}</label><br/>
+        <input type="radio" id="option2" value="b" formControlName="choice"/>
+        <label for="option2"> {{quiz1Info[position]?.b}}</label><br/>
+        <input type="radio" id="option3" value="c" formControlName="choice"/>
+        <label for="option3"> {{quiz1Info[position]?.c}}</label><br/>
+        <input type="radio" id="option4" value="d" formControlName="choice"/>
+        <label for="option4"> {{quiz1Info[position]?.d}}</label><br/>
+
+        <input type="button" value="Previous" (click)="previousButton()" [disabled]="1 > position" />
+        <input type="button" value="Review" (click)="reviewAns()" />
+        <input type="button" value="Next" (click)="nextButton()" [disabled]="position > (quiz1Info.length-2)" />
+        <hr/>
+        <input type=submit value="submit" class="btn btn-primary"  (click)="results()" />
+    </form>
+    <p style="color: blue; font-size: large;">{{resultMsg}}</p>
+</div>
